@@ -15,6 +15,15 @@ const magicLinkLogin =
 
 
 // =========================================
+// URL BASE DEL PROYECTO
+// Funciona en local y en GitHub Pages
+// =========================================
+
+const baseUrl =
+    new URL('./', window.location.href).href
+
+
+// =========================================
 // CORREO + CONTRASEÑA
 // =========================================
 
@@ -64,7 +73,7 @@ formulario.addEventListener('submit', async (e) => {
 
 
     window.location.href =
-        'dashboard.html'
+        `${baseUrl}dashboard.html`
 })
 
 
@@ -86,7 +95,7 @@ googleLogin.addEventListener('click', async () => {
             options: {
 
                 redirectTo:
-                    `${window.location.origin}/dashboard.html`
+                    `${baseUrl}dashboard.html`
 
             }
 
@@ -95,7 +104,10 @@ googleLogin.addEventListener('click', async () => {
 
     if (error) {
 
-        console.error(error)
+        console.error(
+            'Error Google:',
+            error
+        )
 
         mensaje.textContent =
             'No se pudo iniciar sesión con Google.'
@@ -135,22 +147,25 @@ magicLinkLogin.addEventListener('click', async () => {
             options: {
 
                 emailRedirectTo:
-                    `${window.location.origin}/dashboard.html`
+                    `${baseUrl}dashboard.html`
 
             }
 
         })
 
 
-   if (error) {
+    if (error) {
 
-    console.error('Error Magic Link:', error)
+        console.error(
+            'Error Magic Link:',
+            error
+        )
 
-    mensaje.textContent =
-        'Error: ' + error.message
+        mensaje.textContent =
+            'Error: ' + error.message
 
-    return
-}
+        return
+    }
 
 
     mensaje.textContent =
@@ -158,8 +173,9 @@ magicLinkLogin.addEventListener('click', async () => {
 
 })
 
+
 // =========================================
-// REDIRECCIÓN DESPUÉS DE MAGIC LINK
+// REDIRECCIÓN CUANDO SUPABASE INICIE SESIÓN
 // =========================================
 
 supabase.auth.onAuthStateChange((event, session) => {
@@ -170,7 +186,7 @@ supabase.auth.onAuthStateChange((event, session) => {
     ) {
 
         window.location.href =
-            'dashboard.html'
+            `${baseUrl}dashboard.html`
     }
 
 })
