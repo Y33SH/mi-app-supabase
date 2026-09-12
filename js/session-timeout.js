@@ -30,7 +30,7 @@ async function cerrarSesionPorInactividad() {
         `${baseUrl}index.html?sesion=expirada`
 }
 
-// Cualquier actividad reinicia los 30 segundos
+// Cualquier actividad reinicia los 10 minutos
 [
     'click',
     'mousemove',
