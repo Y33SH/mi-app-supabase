@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimaPro | Servicios</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+        <div>
+            <div class="sidebar-logo">
+                <span>❄</span>
+                <h2>ClimaPro</h2>
+            </div>
+
+            <nav class="menu">
+                <a href="dashboard.html">⌂ Inicio</a>
+                <a href="servicios.html" class="activo">🔧 Solicitar servicio</a>
+                <a href="#mis-servicios">📋 Mis servicios</a>
+                <a href="chat.html">💬 Chat</a>
+            </nav>
+        </div>
+
+        <button id="cerrarSesion" class="cerrar-sesion">
+            Cerrar sesión
+        </button>
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+            <div>
+                <p class="dashboard-pequeno">Servicios</p>
+                <h1>Solicitar servicio</h1>
+                <p>Agenda una visita para tu equipo de aire acondicionado.</p>
+            </div>
+        </header>
+
+        <section class="formulario-servicio-card">
+
+            <form id="servicioForm">
+
+                <div class="form-grid">
+
+                    <div class="campo">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+
+                    <div class="campo campo-completo">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="tipoServicio">Tipo de servicio</label>
+
+                        <select id="tipoServicio" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                            <option value="Reparación">Reparación</option>
+                            <option value="Instalación">Instalación</option>
+                            <option value="Diagnóstico">Diagnóstico</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="fecha">Fecha solicitada</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+
+                    <div class="campo campo-completo">
+                        <label for="descripcion">Describe el problema</label>
+
+                        <textarea
+                            id="descripcion"
+                            rows="5"
+                            placeholder="Ejemplo: Mi minisplit enciende pero no enfría..."
+                        ></textarea>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="boton-login">
+                    Enviar solicitud →
+                </button>
+
+                <p id="mensajeServicio"></p>
+
+            </form>
+
+        </section>
+
+
+        <section
+            class="seccion-dashboard"
+            id="mis-servicios"
+        >
+
+            <div class="titulo-seccion">
+                <p>Historial</p>
+                <h2>Mis solicitudes</h2>
+            </div>
+
+            <div id="listaServicios" class="lista-servicios">
+                <p>Cargando solicitudes...</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="js/servicios.js"></script>
+
+</body>
+</html>

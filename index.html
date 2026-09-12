@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Climas Torres | Iniciar sesión</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <h1>Climas Torres</h1>
+
+            <p class="subtitulo">
+                Servicio, mantenimiento e instalación de climas
+            </p>
+
+            <form id="loginForm">
+
+                <div class="campo">
+                    <label for="correo">Correo electrónico</label>
+
+                    <input
+                        type="email"
+                        id="correo"
+                        placeholder="correo@ejemplo.com"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="password">Contraseña</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Contraseña"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Iniciar sesión
+                </button>
+
+            </form>
+
+            <p id="mensaje"></p>
+
+            <p class="registro-texto">
+                ¿No tienes una cuenta?
+                <a href="registro.html">Registrarse</a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="js/login.js"></script>
+
+</body>
+</html>
