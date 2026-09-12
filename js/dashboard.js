@@ -1,4 +1,5 @@
 import { supabase } from './supabase.js'
+import './session-timeout.js'
 
 const correoUsuario = document.getElementById('correoUsuario')
 const cerrarSesion = document.getElementById('cerrarSesion')

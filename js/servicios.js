@@ -1,4 +1,5 @@
 import { supabase } from './supabase.js'
+import './session-timeout.js'
 
 const formulario = document.getElementById('servicioForm')
 const mensaje = document.getElementById('mensajeServicio')

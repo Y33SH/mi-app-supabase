@@ -1,4 +1,5 @@
 import { supabase } from './supabase.js'
+import './session-timeout.js'
 
 
 // =========================================
