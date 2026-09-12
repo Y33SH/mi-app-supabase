@@ -1,4 +1,4 @@
-# Climas Torres
+# Climas Torres by YESH!
 
 Prototipo de sistema web desarrollado para **Climas Torres**, un negocio dedicado a la instalación, mantenimiento, diagnóstico y reparación de equipos de aire acondicionado.
 
@@ -169,11 +169,7 @@ Las claves privadas utilizadas por servicios externos no se almacenan en el repo
 
 Las credenciales privadas se configuran mediante:
 
-```text
-Supabase
-→ Edge Functions
-→ Secrets
-```
+sshhh nadie tiene que saber...
 
 La aplicación utiliza las políticas de seguridad de Supabase para controlar el acceso a la información.
 
