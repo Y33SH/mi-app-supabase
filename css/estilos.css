@@ -1,3 +1,7 @@
+/* =========================================
+   GENERAL
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,90 +10,345 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f1f5f9;
     color: #1e293b;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(37, 99, 235, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #07152d,
+            #0b2b55 55%,
+            #0b4a75
+        );
+
+    min-height: 100vh;
 }
+
+
+/* =========================================
+   LOGIN
+========================================= */
 
 .login-container {
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+
+    padding: 30px 20px;
 }
 
+
 .login-card {
-    background: white;
     width: 100%;
-    max-width: 420px;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 440px;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    padding: 42px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.22);
 }
+
 
 .login-card h1 {
     text-align: center;
+
     font-size: 32px;
-    margin-bottom: 10px;
+    font-weight: 800;
+
+    color: #0f172a;
+
+    margin-bottom: 8px;
 }
+
 
 .subtitulo {
     text-align: center;
+
     color: #64748b;
+
+    font-size: 14px;
+    line-height: 1.5;
+
     margin-bottom: 30px;
 }
+
+
+/* =========================================
+   CAMPOS
+========================================= */
 
 .campo {
     margin-bottom: 20px;
 }
 
+
 .campo label {
     display: block;
+
     margin-bottom: 8px;
-    font-weight: bold;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 600;
 }
 
-.campo input,
-.campo textarea,
-.campo select {
+
+.login-card .campo input {
     width: 100%;
-    padding: 12px;
+    height: 50px;
+
+    padding: 0 14px;
+
     border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 15px;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    font-size: 14px;
+    font-family: inherit;
+
+    outline: none;
+
+    transition: 0.2s;
 }
 
-button {
+
+.login-card .campo input::placeholder {
+    color: #94a3b8;
+}
+
+
+.login-card .campo input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================
+   BOTÓN PRINCIPAL
+========================================= */
+
+.login-card button[type="submit"] {
     width: 100%;
+    height: 50px;
+
     border: none;
-    padding: 13px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    background: #0f172a;
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #0f6ccf
+        );
+
     color: white;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+
+    transition: 0.2s;
 }
 
-button:hover {
-    opacity: 0.9;
+
+.login-card button[type="submit"]:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 11px 25px rgba(37, 99, 235, 0.28);
 }
+
+
+/* =========================================
+   MENSAJE
+========================================= */
+
+#mensaje {
+    min-height: 20px;
+
+    margin-top: 14px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* =========================================
+   SEPARADOR
+========================================= */
+
+.separador-login {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 20px 0;
+}
+
+
+.separador-login span {
+    flex: 1;
+
+    height: 1px;
+
+    background: #e2e8f0;
+}
+
+
+.separador-login p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   LOGIN SOCIAL
+========================================= */
+
+.boton-social {
+    width: 100%;
+    height: 50px;
+
+    margin-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    border: 1px solid #d7deea;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.boton-social:hover {
+    background: #f8fafc;
+
+    border-color: #94a3b8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.07);
+}
+
+
+.google-icon {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    border: 1px solid #e2e8f0;
+
+    background: white;
+
+    color: #4285f4;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+/* =========================================
+   REGISTRO
+========================================= */
 
 .registro-texto {
+    margin-top: 22px;
+
     text-align: center;
-    margin-top: 20px;
+
+    color: #64748b;
+
+    font-size: 13px;
 }
 
-a {
+
+.registro-texto a {
+    margin-left: 4px;
+
     color: #2563eb;
+
+    font-weight: 700;
+
     text-decoration: none;
 }
 
-#mensaje {
-    text-align: center;
-    margin-top: 15px;
+
+.registro-texto a:hover {
+    text-decoration: underline;
 }
 
+
+/* =========================================
+   RESPONSIVE LOGIN
+========================================= */
+
+@media (max-width: 500px) {
+
+    .login-container {
+        padding: 20px 15px;
+    }
+
+    .login-card {
+        padding: 30px 22px;
+        border-radius: 16px;
+    }
+
+    .login-card h1 {
+        font-size: 27px;
+    }
+
+}
 
 /* =========================================
    DASHBOARD

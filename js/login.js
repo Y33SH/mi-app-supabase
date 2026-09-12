@@ -1,34 +1,176 @@
 import { supabase } from './supabase.js'
 
-const formulario = document.getElementById('loginForm')
-const mensaje = document.getElementById('mensaje')
+
+const formulario =
+    document.getElementById('loginForm')
+
+const mensaje =
+    document.getElementById('mensaje')
+
+const googleLogin =
+    document.getElementById('googleLogin')
+
+const magicLinkLogin =
+    document.getElementById('magicLinkLogin')
+
+
+// =========================================
+// CORREO + CONTRASEÑA
+// =========================================
 
 formulario.addEventListener('submit', async (e) => {
 
     e.preventDefault()
 
-    const correo = document.getElementById('correo').value
-    const password = document.getElementById('password').value
+    const correo =
+        document.getElementById('correo').value.trim()
 
-    mensaje.textContent = 'Iniciando sesión...'
+    const password =
+        document.getElementById('password').value
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: correo,
-        password: password
-    })
+
+    mensaje.textContent =
+        'Iniciando sesión...'
+
+
+    const { data, error } =
+        await supabase.auth.signInWithPassword({
+
+            email: correo,
+            password: password
+
+        })
+
 
     if (error) {
 
-        mensaje.textContent = 'Correo o contraseña incorrectos'
+        mensaje.textContent =
+            'Correo o contraseña incorrectos'
 
         console.error(error)
 
         return
     }
 
-    console.log('Usuario:', data.user)
 
-    mensaje.textContent = 'Inicio de sesión correcto'
+    console.log(
+        'Usuario:',
+        data.user
+    )
 
-    window.location.href = 'dashboard.html'
+
+    mensaje.textContent =
+        'Inicio de sesión correcto'
+
+
+    window.location.href =
+        'dashboard.html'
+})
+
+
+// =========================================
+// GOOGLE
+// =========================================
+
+googleLogin.addEventListener('click', async () => {
+
+    mensaje.textContent =
+        'Abriendo Google...'
+
+
+    const { error } =
+        await supabase.auth.signInWithOAuth({
+
+            provider: 'google',
+
+            options: {
+
+                redirectTo:
+                    `${window.location.origin}/dashboard.html`
+
+            }
+
+        })
+
+
+    if (error) {
+
+        console.error(error)
+
+        mensaje.textContent =
+            'No se pudo iniciar sesión con Google.'
+    }
+
+})
+
+
+// =========================================
+// ENLACE MÁGICO
+// =========================================
+
+magicLinkLogin.addEventListener('click', async () => {
+
+    const correo =
+        document.getElementById('correo').value.trim()
+
+
+    if (!correo) {
+
+        mensaje.textContent =
+            'Primero escribe tu correo electrónico.'
+
+        return
+    }
+
+
+    mensaje.textContent =
+        'Enviando enlace de acceso...'
+
+
+    const { error } =
+        await supabase.auth.signInWithOtp({
+
+            email: correo,
+
+            options: {
+
+                emailRedirectTo:
+                    `${window.location.origin}/dashboard.html`
+
+            }
+
+        })
+
+
+   if (error) {
+
+    console.error('Error Magic Link:', error)
+
+    mensaje.textContent =
+        'Error: ' + error.message
+
+    return
+}
+
+
+    mensaje.textContent =
+        'Revisa tu correo. Te enviamos un enlace para iniciar sesión.'
+
+})
+
+// =========================================
+// REDIRECCIÓN DESPUÉS DE MAGIC LINK
+// =========================================
+
+supabase.auth.onAuthStateChange((event, session) => {
+
+    if (
+        event === 'SIGNED_IN' &&
+        session
+    ) {
+
+        window.location.href =
+            'dashboard.html'
+    }
+
 })
