@@ -1,7 +1,7 @@
 import { supabase } from './supabase.js'
 
-// PARA PROBAR: 30 segundos
-const TIEMPO_LIMITE = 30 * 1000
+// 10 minutos 
+const TIEMPO_LIMITE = 10 * 60 * 1000
 
 let temporizador
 
