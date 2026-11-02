@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climas Torres | Inicio</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/brand.css">
+</head>
+
+<body class="dashboard-body client-dashboard">
+
+    <aside class="sidebar client-sidebar">
+
+        <div>
+            <div class="sidebar-logo">
+                <img
+                    class="brand-logo brand-logo-sidebar"
+                    src="assets/climas-torres-logo.png"
+                    alt="Climas Torres"
+                >
+                <div class="sidebar-brand-caption">
+                    <small>CLIMATIZACIÓN Y SERVICIO</small>
+                </div>
+            </div>
+
+            <p class="client-nav-caption">MI ESPACIO</p>
+            <nav class="menu client-menu" aria-label="Navegación principal">
+                <a href="dashboard.html" class="activo">
+                    <span aria-hidden="true">⌂</span> Inicio
+                </a>
+                <a href="servicios.html">
+                    <span aria-hidden="true">＋</span> Solicitar servicio
+                </a>
+                <a href="servicios.html#mis-servicios">
+                    <span aria-hidden="true">▤</span> Mis servicios
+                </a>
+                <a href="chat.html">
+                    <span aria-hidden="true">▢</span> Chat de ayuda
+                </a>
+                <a href="#perfil">
+                    <span aria-hidden="true">◉</span> Mi perfil
+                </a>
+            </nav>
+        </div>
+
+        <button id="cerrarSesion" class="cerrar-sesion">
+            <span aria-hidden="true">↪</span>
+            Cerrar sesión
+        </button>
+
+    </aside>
+
+
+    <main class="dashboard-main client-main">
+
+        <header class="dashboard-header client-header">
+
+            <div>
+                <p class="dashboard-pequeno">TU ESPACIO CLIMAS TORRES</p>
+                <h1>Bienvenido a Climas Torres</h1>
+                <p id="correoUsuario">
+                    Cargando usuario...
+                </p>
+            </div>
+
+            <div class="avatar" aria-label="Foto de perfil">
+                <img id="avatarImagen" alt="Foto de perfil" hidden>
+                <span id="avatarAlternativa" aria-hidden="true">👤</span>
+            </div>
+
+        </header>
+
+
+        <section class="hero-dashboard">
+
+            <div class="client-hero-copy">
+                <span class="hero-eyebrow"><span aria-hidden="true">✦</span> CONFORT TODO EL AÑO</span>
+
+                <h2>
+                    Tu clima ideal,<br>en buenas manos.
+                </h2>
+
+                <p>
+                    Mantenimiento, reparación e instalación de aire acondicionado,
+                    con atención confiable para tu hogar o negocio.
+                </p>
+
+                <a href="servicios.html" class="boton-accion client-primary-action">
+                    <span>Solicitar un servicio</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+
+            <div class="client-hero-art" aria-hidden="true">
+                <div class="hero-orbit hero-orbit-one"></div>
+                <div class="hero-orbit hero-orbit-two"></div>
+                <svg class="hero-ac-unit" viewBox="0 0 300 230" fill="none">
+                    <defs>
+                        <linearGradient id="unitFace" x1="61" y1="70" x2="235" y2="174" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#fff"/>
+                            <stop offset="1" stop-color="#dbeafe"/>
+                        </linearGradient>
+                        <linearGradient id="unitEdge" x1="78" y1="74" x2="230" y2="164" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#e0f2fe"/>
+                            <stop offset="1" stop-color="#93c5fd"/>
+                        </linearGradient>
+                    </defs>
+                    <ellipse cx="151" cy="193" rx="112" ry="15" fill="#07152d" fill-opacity=".2"/>
+                    <path d="M66 70c0-9 7-16 16-16h138c9 0 16 7 16 16v75c0 8-7 15-15 17l-137 19c-10 1-18-6-18-16V70Z" fill="url(#unitFace)" stroke="#bfdbfe" stroke-width="2"/>
+                    <path d="M80 76h141v44L80 139V76Z" fill="url(#unitEdge)" fill-opacity=".82"/>
+                    <path d="M81 148 220 130v14L81 163v-15Z" fill="#93c5fd" fill-opacity=".65"/>
+                    <path d="M91 154v13m19-15v13m19-16v13m19-16v13m19-16v13m19-16v13m19-16v13" stroke="#3b82f6" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="207" cy="67" r="3" fill="#38bdf8"/>
+                    <path d="M119 180c-5 8-5 13 0 18m37-23c-5 8-5 13 0 18m37-23c-5 8-5 13 0 18" stroke="#bfdbfe" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M146 91v17m-7-13 14 9m-14 0 14-9" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="146" cy="99" r="15" stroke="#60a5fa" stroke-opacity=".5" stroke-width="1.5"/>
+                </svg>
+                <span class="hero-art-label">AIRE LIMPIO · CONFORT · CONFIANZA</span>
+            </div>
+
+        </section>
+
+
+        <section class="seccion-dashboard client-services-section">
+
+            <div class="titulo-seccion">
+                <div>
+                    <p>ATENCIÓN PARA TU EQUIPO</p>
+                    <h2>¿Qué necesita tu aire acondicionado?</h2>
+                    <span class="client-section-description">Elige el servicio ideal y nosotros te ayudamos con el resto.</span>
+                </div>
+            </div>
+
+
+            <div class="tarjetas-servicios client-service-grid">
+
+                <a href="servicios.html" class="tarjeta-servicio client-service-card maintenance-card">
+
+                    <div class="tarjeta-icono service-icon maintenance-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 11h32v15H8zM11 16h26M13 21h2m5 0h2m5 0h2m5 0h2"/>
+                            <path d="M14 30v5m10-5v7m10-7v5M9 39h30"/>
+                            <path d="m22 13 2 3 2-3"/>
+                        </svg>
+                    </div>
+
+                    <h3>Mantenimiento</h3>
+
+                    <p>
+                        Limpieza y revisión preventiva de tu equipo.
+                    </p>
+
+                    <span class="service-card-action">Solicitar mantenimiento <b aria-hidden="true">→</b></span>
+
+                </a>
+
+
+                <a href="servicios.html" class="tarjeta-servicio client-service-card repair-card">
+
+                    <div class="tarjeta-icono service-icon repair-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M27 11a11 11 0 0 0 13 13L27 37a5 5 0 0 1-7-7l13-13a11 11 0 0 0-6-6Z"/>
+                            <path d="m11 10 5 5m-8 0 8-8m15 17 4 4"/>
+                            <circle cx="14" cy="34" r="2"/>
+                        </svg>
+                    </div>
+
+                    <h3>Reparación</h3>
+
+                    <p>
+                        Diagnóstico y solución de fallas en tu minisplit.
+                    </p>
+
+                    <span class="service-card-action">Solicitar reparación <b aria-hidden="true">→</b></span>
+
+                </a>
+
+
+                <a href="servicios.html" class="tarjeta-servicio client-service-card install-card">
+
+                    <div class="tarjeta-icono service-icon install-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 12h34v15H7zM10 17h28M13 22h2m5 0h2m5 0h2m5 0h2"/>
+                            <path d="M14 31v6m10-6v8m10-8v6M9 41h30"/>
+                            <path d="M24 13v6m-3-3h6m-5-2 4 4m0-4-4 4"/>
+                        </svg>
+                    </div>
+
+                    <h3>Instalación</h3>
+
+                    <p>
+                        Instalación profesional de equipos nuevos.
+                    </p>
+
+                    <span class="service-card-action">Solicitar instalación <b aria-hidden="true">→</b></span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <section class="ayuda-card client-help-card">
+
+            <div>
+                <p>ESTAMOS PARA AYUDARTE</p>
+
+                <h3>
+                    Habla directamente con nosotros
+                </h3>
+
+                <span>
+                    Utiliza nuestro chat para resolver tus dudas.
+                </span>
+            </div>
+
+            <a href="chat.html">
+                <span aria-hidden="true">▢</span> Abrir chat
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </section>
+
+        <section class="seccion-dashboard client-profile-section" id="perfil">
+            <div class="titulo-seccion">
+                <div>
+                    <p>MI CUENTA</p>
+                    <h2>Personaliza tu perfil</h2>
+                    <p>Sube una foto para identificar tu cuenta.</p>
+                </div>
+            </div>
+            <form id="perfilForm" class="form-estado formulario-perfil">
+                <div class="avatar avatar-perfil" aria-label="Vista previa de foto">
+                    <img id="avatarPreview" alt="Vista previa de tu foto" hidden>
+                    <span id="avatarPreviewAlternativa" aria-hidden="true">👤</span>
+                </div>
+                <label class="selector-imagen">
+                    Foto de perfil
+                    <input
+                        type="file"
+                        id="avatarArchivo"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+                    <small>JPG, PNG o WebP, máximo 10 MB.</small>
+                </label>
+                <p id="mensajePerfil" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+    </main>
+
+
+    <script type="module" src="js/dashboard.js"></script>
+
+</body>
+</html>
