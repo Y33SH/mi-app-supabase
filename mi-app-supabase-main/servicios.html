@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climas Torres | Servicios</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/brand.css">
+</head>
+
+<body class="dashboard-body client-dashboard">
+
+    <aside class="sidebar client-sidebar">
+        <div>
+            <div class="sidebar-logo">
+                <img
+                    class="brand-logo brand-logo-sidebar"
+                    src="assets/climas-torres-logo.png"
+                    alt="Climas Torres"
+                >
+                <div class="sidebar-brand-caption">
+                    <small>CLIMATIZACIÓN Y SERVICIO</small>
+                </div>
+            </div>
+
+            <p class="client-nav-caption">MI ESPACIO</p>
+            <nav class="menu client-menu" aria-label="Navegación principal">
+                <a href="dashboard.html">
+                    <span aria-hidden="true">⌂</span> Inicio
+                </a>
+                <a id="navSolicitarServicio" href="servicios.html" class="activo" aria-current="page">
+                    <span aria-hidden="true">＋</span> Solicitar servicio
+                </a>
+                <a id="navMisServicios" href="servicios.html#mis-servicios">
+                    <span aria-hidden="true">▤</span> Mis servicios
+                </a>
+                <a href="dashboard.html#pagos">
+                    <span aria-hidden="true">$</span> Mis pagos
+                </a>
+                <a href="chat.html">
+                    <span aria-hidden="true">▢</span> Chat de ayuda
+                </a>
+                <a href="dashboard.html#perfil">
+                    <span aria-hidden="true">◉</span> Mi perfil
+                </a>
+            </nav>
+        </div>
+
+        <button id="cerrarSesion" class="cerrar-sesion">
+            Cerrar sesión
+        </button>
+    </aside>
+
+    <main class="dashboard-main client-main">
+
+        <header class="dashboard-header client-header">
+            <div>
+                <p class="dashboard-pequeno">Servicios</p>
+                <h1>Solicitar servicio</h1>
+                <p>Agenda una visita para tu equipo de aire acondicionado.</p>
+            </div>
+        </header>
+
+        <section class="formulario-servicio-card">
+
+            <form id="servicioForm">
+
+                <div class="form-grid">
+
+                    <div class="campo">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+
+                    <div class="campo campo-completo">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="tipoServicio">Tipo de servicio</label>
+
+                        <select id="tipoServicio" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                            <option value="Reparación">Reparación</option>
+                            <option value="Instalación">Instalación</option>
+                            <option value="Diagnóstico">Diagnóstico</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="fecha">Fecha solicitada</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+
+                    <div class="campo campo-completo">
+                        <label for="descripcion">Describe el problema</label>
+
+                        <textarea
+                            id="descripcion"
+                            rows="5"
+                            placeholder="Ejemplo: Mi minisplit enciende pero no enfría..."
+                        ></textarea>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="boton-login">
+                    Enviar solicitud →
+                </button>
+
+                <p id="mensajeServicio"></p>
+
+            </form>
+
+        </section>
+
+
+        <section
+            class="seccion-dashboard"
+            id="mis-servicios"
+        >
+
+            <div class="titulo-seccion">
+                <p>Historial</p>
+                <h2>Mis solicitudes</h2>
+            </div>
+
+            <div id="listaServicios" class="lista-servicios">
+                <p>Cargando solicitudes...</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="js/servicios.js"></script>
+
+</body>
+</html>

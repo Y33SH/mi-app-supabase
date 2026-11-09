@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climas Torres | Panel de gestión</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/panel.css">
+    <link rel="stylesheet" href="css/brand.css">
+</head>
+
+<body class="dashboard-body management-panel" data-theme="light">
+    <button
+        type="button"
+        class="sidebar-backdrop"
+        id="sidebarBackdrop"
+        aria-label="Cerrar menú"
+        hidden
+    ></button>
+
+    <aside class="sidebar panel-sidebar" id="panelSidebar">
+        <div>
+            <div class="sidebar-logo">
+                <img
+                    class="brand-logo brand-logo-sidebar"
+                    src="assets/climas-torres-logo.png"
+                    alt="Climas Torres"
+                >
+                <div class="sidebar-brand-caption">
+                    <small>GESTIÓN DE SERVICIOS</small>
+                </div>
+            </div>
+
+            <p class="sidebar-caption">ESPACIO DE TRABAJO</p>
+            <nav class="menu panel-menu" aria-label="Navegación principal">
+                <a href="#solicitudes" class="activo" data-section="solicitudes">
+                    <span class="nav-icon" aria-hidden="true">▦</span>
+                    <span>Solicitudes</span>
+                </a>
+                <a href="#perfil" data-section="perfil">
+                    <span class="nav-icon" aria-hidden="true">◉</span>
+                    <span>Mi perfil</span>
+                </a>
+                <a href="#usuarios" id="enlaceUsuarios" data-section="usuarios" hidden>
+                    <span class="nav-icon" aria-hidden="true">♙</span>
+                    <span>Usuarios y roles</span>
+                </a>
+                <a href="#directorio" id="enlaceDirectorio" data-section="directorio" hidden>
+                    <span class="nav-icon" aria-hidden="true">⌂</span>
+                    <span>Proveedores</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-status">
+                <span aria-hidden="true"></span>
+                <div>
+                    <strong>Sistema operativo</strong>
+                    <small>Climas Torres</small>
+                </div>
+            </div>
+            <button id="cerrarSesion" class="cerrar-sesion">
+                <span aria-hidden="true">↪</span>
+                Cerrar sesión
+            </button>
+        </div>
+    </aside>
+
+    <main class="dashboard-main panel-main">
+        <header class="dashboard-header panel-topbar">
+            <div>
+                <button
+                    type="button"
+                    id="sidebarToggle"
+                    class="icon-button mobile-menu-button"
+                    aria-label="Abrir menú"
+                    aria-expanded="false"
+                    aria-controls="panelSidebar"
+                >
+                    <span aria-hidden="true">☰</span>
+                </button>
+                <div>
+                    <p class="dashboard-pequeno" id="rolUsuario">Panel de gestión</p>
+                    <h1>Solicitudes de servicio</h1>
+                    <p id="correoUsuario">Verificando acceso...</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-button theme-toggle"
+                    aria-label="Cambiar a modo oscuro"
+                    title="Cambiar tema"
+                >
+                    <span id="themeIcon" aria-hidden="true">☾</span>
+                </button>
+                <div class="avatar topbar-avatar" aria-label="Foto de perfil">
+                    <img id="avatarImagen" alt="Foto de perfil" hidden>
+                    <span id="avatarAlternativa" aria-hidden="true">👤</span>
+                </div>
+                <span class="topbar-role" id="topbarRole">Cuenta</span>
+            </div>
+        </header>
+
+        <div class="panel-content">
+        <p id="mensajePanel" class="panel-feedback" role="status" aria-live="polite"></p>
+
+        <section class="seccion-dashboard" id="solicitudes">
+            <div class="titulo-seccion">
+                <div>
+                    <p>OPERACIONES</p>
+                    <h2>Todas las solicitudes</h2>
+                    <span class="section-description">Supervisa y administra los servicios de tus clientes.</span>
+                </div>
+            </div>
+            <div class="tarjetas-resumen" aria-label="Resumen de solicitudes">
+                <article class="resumen-card metric-card metric-total">
+                    <span class="metric-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M8.5 4.5 12 7l3.5-2.5M8.5 19.5 12 17l3.5 2.5M3.8 11l3.8 1-3.8 1M20.2 11l-3.8 1 3.8 1"/>
+                        </svg>
+                    </span>
+                    <span>Total de solicitudes</span>
+                    <strong id="totalSolicitudes">—</strong>
+                </article>
+                <article class="resumen-card metric-card metric-pending">
+                    <span class="metric-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="M12 7v5l3 2"/>
+                        </svg>
+                    </span>
+                    <span>Pendientes</span>
+                    <strong id="solicitudesPendientes">—</strong>
+                </article>
+                <article class="resumen-card metric-card metric-progress">
+                    <span class="metric-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 13a8 8 0 0 1 14-5l2 2"/>
+                            <path d="M20 5v5h-5"/>
+                            <path d="M20 11a8 8 0 0 1-14 5l-2-2"/>
+                            <path d="M4 19v-5h5"/>
+                        </svg>
+                    </span>
+                    <span>En proceso</span>
+                    <strong id="solicitudesProceso">—</strong>
+                </article>
+                <article class="resumen-card metric-card metric-complete">
+                    <span class="metric-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="m8 12 2.5 2.5L16 9"/>
+                        </svg>
+                    </span>
+                    <span>Completadas</span>
+                    <strong id="solicitudesCompletadas">—</strong>
+                </article>
+            </div>
+            <div class="filtros-solicitudes">
+                <label>
+                    <span>Buscar</span>
+                    <input
+                        type="search"
+                        id="buscarSolicitud"
+                        placeholder="Nombre, teléfono, dirección..."
+                    >
+                </label>
+                <label>
+                    <span>Estado</span>
+                    <select id="filtroEstado">
+                        <option value="">Todos los estados</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Tipo de servicio</span>
+                    <select id="filtroTipo">
+                        <option value="">Todos los servicios</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Desde</span>
+                    <input type="date" id="filtroFechaDesde">
+                </label>
+                <label>
+                    <span>Hasta</span>
+                    <input type="date" id="filtroFechaHasta">
+                </label>
+                <button type="button" id="exportarPdf" class="boton-accion" hidden>
+                    <span aria-hidden="true">↓</span>
+                    Exportar reporte
+                </button>
+            </div>
+            <p class="results-caption">Solicitudes recientes</p>
+            <div id="listaSolicitudes" class="lista-servicios">
+                <p>Cargando solicitudes...</p>
+            </div>
+        </section>
+
+        <section class="seccion-dashboard" id="perfil">
+            <div class="titulo-seccion">
+                <div>
+                    <p>Cuenta</p>
+                    <h2>Mi perfil</h2>
+                    <p>El nombre visible no cambia tu correo de acceso.</p>
+                </div>
+            </div>
+            <form id="perfilForm" class="form-estado formulario-perfil">
+                <div class="avatar avatar-perfil" aria-label="Vista previa de foto">
+                    <img id="avatarPreview" alt="Vista previa de tu foto" hidden>
+                    <span id="avatarPreviewAlternativa" aria-hidden="true">👤</span>
+                </div>
+                <label>
+                    Nombre visible
+                    <input
+                        type="text"
+                        id="nombreVisible"
+                        maxlength="80"
+                        autocomplete="name"
+                        required
+                    >
+                </label>
+                <label class="selector-imagen">
+                    Cambiar foto de perfil
+                    <input
+                        type="file"
+                        id="avatarArchivo"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+                    <small>JPG, PNG o WebP, máximo 10 MB.</small>
+                </label>
+                <button type="submit">Guardar nombre</button>
+                <p id="mensajePerfil" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section class="seccion-dashboard" id="usuarios" hidden>
+            <div class="titulo-seccion">
+                <div>
+                    <p>Administración</p>
+                    <h2>Usuarios y roles</h2>
+                    <p>Los usuarios deben registrarse antes de asignarles un rol.</p>
+                    <article class="resumen-card users-metric" id="resumenUsuarios" hidden>
+                        <span>Usuarios registrados</span>
+                        <strong id="totalUsuarios">—</strong>
+                    </article>
+                </div>
+            </div>
+            <div id="listaUsuarios" class="lista-servicios">
+                <p>Cargando usuarios...</p>
+            </div>
+        </section>
+
+        <section class="seccion-dashboard" id="directorio" hidden>
+            <div class="titulo-seccion">
+                <div>
+                    <p>Administración</p>
+                    <h2>Proveedores y contratistas</h2>
+                    <p>Directorio privado visible solo para administradores.</p>
+                </div>
+            </div>
+            <form id="directorioForm" class="form-estado formulario-directorio">
+                <input type="hidden" id="contactoId">
+                <label>
+                    Tipo
+                    <select id="contactoTipo" required>
+                        <option value="proveedor">Proveedor</option>
+                        <option value="contratista">Contratista</option>
+                    </select>
+                </label>
+                <label>
+                    Nombre de contacto
+                    <input id="contactoNombre" maxlength="120" required>
+                </label>
+                <label>
+                    Empresa
+                    <input id="contactoEmpresa" maxlength="160">
+                </label>
+                <label>
+                    Teléfono
+                    <input id="contactoTelefono" type="tel" maxlength="50">
+                </label>
+                <label>
+                    Correo
+                    <input id="contactoCorreo" type="email" maxlength="254">
+                </label>
+                <label>
+                    Dirección
+                    <input id="contactoDireccion" maxlength="300">
+                </label>
+                <label>
+                    Servicios o productos
+                    <input id="contactoServicios" maxlength="500">
+                </label>
+                <label>
+                    Notas
+                    <textarea id="contactoNotas" rows="3" maxlength="2000"></textarea>
+                </label>
+                <button type="submit" id="guardarContacto">Agregar registro</button>
+                <button type="button" id="cancelarEdicionContacto" hidden>
+                    Cancelar edición
+                </button>
+            </form>
+            <div class="filtros-solicitudes">
+                <label>
+                    Buscar proveedor o contratista
+                    <input type="search" id="buscarContacto" placeholder="Nombre, empresa, servicio...">
+                </label>
+                <label>
+                    Tipo
+                    <select id="filtroContactoTipo">
+                        <option value="">Todos</option>
+                        <option value="proveedor">Proveedores</option>
+                        <option value="contratista">Contratistas</option>
+                    </select>
+                </label>
+            </div>
+            <div id="listaDirectorio" class="lista-servicios">
+                <p>Cargando directorio...</p>
+            </div>
+        </section>
+        </div>
+    </main>
+
+    <script type="module" src="js/panel.js"></script>
+</body>
+</html>
