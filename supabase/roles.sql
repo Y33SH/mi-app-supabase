@@ -417,12 +417,110 @@ BEGIN
 END;
 $$;
 
+ALTER TABLE public.solicitudes
+ADD COLUMN IF NOT EXISTS cotizacion_mxn numeric(10, 2);
+ALTER TABLE public.solicitudes
+ADD COLUMN IF NOT EXISTS pago_estado text NOT NULL DEFAULT 'sin_cotizacion';
+ALTER TABLE public.solicitudes
+ADD COLUMN IF NOT EXISTS mercadopago_preference_id text;
+ALTER TABLE public.solicitudes
+ADD COLUMN IF NOT EXISTS mercadopago_payment_id text;
+
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'solicitudes_cotizacion_mxn_positive'
+          AND conrelid = 'public.solicitudes'::regclass
+    ) THEN
+        ALTER TABLE public.solicitudes
+        ADD CONSTRAINT solicitudes_cotizacion_mxn_positive
+        CHECK (
+            cotizacion_mxn IS NULL
+            OR cotizacion_mxn BETWEEN 1 AND 1000000
+        );
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'solicitudes_pago_estado_valid'
+          AND conrelid = 'public.solicitudes'::regclass
+    ) THEN
+        ALTER TABLE public.solicitudes
+        ADD CONSTRAINT solicitudes_pago_estado_valid
+        CHECK (pago_estado IN ('sin_cotizacion', 'pendiente', 'pagado'));
+    END IF;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION public.actualizar_cotizacion_solicitud(
+    p_solicitud_id text,
+    p_cotizacion_mxn numeric
+)
+RETURNS void
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
+BEGIN
+    IF auth.uid() IS NULL
+       OR COALESCE(public.current_user_role(), '') NOT IN ('admin', 'editor') THEN
+        RAISE EXCEPTION 'No tienes permiso para cotizar solicitudes'
+            USING ERRCODE = '42501';
+    END IF;
+
+    IF p_cotizacion_mxn IS NULL
+       OR p_cotizacion_mxn < 1
+       OR p_cotizacion_mxn > 1000000
+       OR p_cotizacion_mxn <> round(p_cotizacion_mxn, 2) THEN
+        RAISE EXCEPTION 'La cotización debe estar entre $1 y $1,000,000 MXN'
+            USING ERRCODE = '22023';
+    END IF;
+
+    UPDATE public.solicitudes
+    SET cotizacion_mxn = p_cotizacion_mxn,
+        pago_estado = 'pendiente',
+        mercadopago_preference_id = NULL,
+        mercadopago_payment_id = NULL
+    WHERE id::text = p_solicitud_id
+      AND pago_estado <> 'pagado'
+      AND mercadopago_preference_id IS NULL;
+
+    IF NOT FOUND THEN
+        IF EXISTS (
+            SELECT 1
+            FROM public.solicitudes
+            WHERE id::text = p_solicitud_id
+              AND pago_estado = 'pagado'
+        ) THEN
+            RAISE EXCEPTION 'No se puede cambiar una cotización que ya fue pagada'
+                USING ERRCODE = '22023';
+        END IF;
+        IF EXISTS (
+            SELECT 1
+            FROM public.solicitudes
+            WHERE id::text = p_solicitud_id
+              AND mercadopago_preference_id IS NOT NULL
+        ) THEN
+            RAISE EXCEPTION 'No se puede cambiar una cotización con un checkout activo'
+                USING ERRCODE = '22023';
+        END IF;
+        RAISE EXCEPTION 'No se encontró la solicitud'
+            USING ERRCODE = 'P0002';
+    END IF;
+END;
+$$;
+
 REVOKE ALL ON FUNCTION public.actualizar_estado_solicitud(text, text) FROM PUBLIC;
 REVOKE ALL ON FUNCTION public.actualizar_solicitud(text, text, text, text, text, date, text) FROM PUBLIC;
 REVOKE ALL ON FUNCTION public.eliminar_solicitud_admin(text) FROM PUBLIC;
+REVOKE ALL ON FUNCTION public.actualizar_cotizacion_solicitud(text, numeric) FROM PUBLIC;
 GRANT EXECUTE ON FUNCTION public.actualizar_estado_solicitud(text, text) TO authenticated;
 GRANT EXECUTE ON FUNCTION public.actualizar_solicitud(text, text, text, text, text, date, text) TO authenticated;
 GRANT EXECUTE ON FUNCTION public.eliminar_solicitud_admin(text) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.actualizar_cotizacion_solicitud(text, numeric) TO authenticated;
 
 -- Las políticas permisivas se combinan con OR; se reemplazan para evitar
 -- que una política anterior permita acceder a solicitudes de otros usuarios.

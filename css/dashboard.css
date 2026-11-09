@@ -22,6 +22,15 @@
     box-sizing: border-box;
 }
 
+.client-dashboard .pago-card {
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.client-dashboard .boton-pagar {
+    width: 100%;
+}
+
 .client-dashboard .client-sidebar {
     width: 252px;
     padding: 27px 16px 18px;
@@ -135,6 +144,10 @@
     border-color: rgba(148, 163, 184, .45);
     background: rgba(148, 163, 184, .1);
     color: white;
+}
+
+.client-dashboard .lista-pagos {
+    grid-template-columns: 1fr;
 }
 
 .client-dashboard .client-main {
@@ -328,6 +341,100 @@
 
 .client-dashboard .client-services-section {
     margin-top: 42px;
+}
+
+.client-dashboard .client-payments-section {
+    margin-top: 42px;
+}
+
+.client-dashboard .client-payments-section .titulo-seccion {
+    margin-bottom: 19px;
+}
+
+.client-dashboard .lista-pagos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.client-dashboard .pago-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 20px;
+    border: 1px solid var(--client-border);
+    border-radius: 14px;
+    background: var(--client-surface);
+    box-shadow: var(--client-shadow);
+}
+
+.client-dashboard .pago-card-details {
+    display: grid;
+    gap: 7px;
+}
+
+.client-dashboard .pago-card h3,
+.client-dashboard .pago-card p {
+    margin: 0;
+}
+
+.client-dashboard .pago-card h3 {
+    font-size: 14px;
+}
+
+.client-dashboard .pago-card p,
+.client-dashboard .pago-estado,
+.client-dashboard .mensaje-pago {
+    color: var(--client-muted);
+    font-size: 11px;
+}
+
+.client-dashboard .pago-card-details > strong {
+    color: var(--client-text);
+    font-size: 19px;
+}
+
+.client-dashboard .pago-estado.pago-aprobado {
+    color: #047857;
+    font-weight: 700;
+}
+
+.client-dashboard .boton-pagar {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--client-blue);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.client-dashboard .boton-pagar:hover {
+    background: var(--client-blue-dark);
+}
+
+.client-dashboard .boton-pagar:disabled {
+    cursor: wait;
+    opacity: .65;
+}
+
+.client-dashboard .sin-pagos {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 22px;
+    border: 1px dashed var(--client-border);
+    border-radius: 12px;
+    color: var(--client-muted);
+    text-align: center;
+    font-size: 12px;
+}
+
+.client-dashboard .mensaje-pago {
+    min-height: 1em;
 }
 
 .client-dashboard .client-services-section .titulo-seccion {

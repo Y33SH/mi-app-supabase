@@ -36,6 +36,9 @@
                 <a href="servicios.html#mis-servicios">
                     <span aria-hidden="true">▤</span> Mis servicios
                 </a>
+                <a href="#pagos">
+                    <span aria-hidden="true">$</span> Mis pagos
+                </a>
                 <a href="chat.html">
                     <span aria-hidden="true">▢</span> Chat de ayuda
                 </a>
@@ -200,6 +203,22 @@
 
             </div>
 
+        </section>
+
+        <section class="seccion-dashboard client-payments-section" id="pagos">
+            <div class="titulo-seccion">
+                <div>
+                    <p>PAGOS</p>
+                    <h2>Cotizaciones y pagos</h2>
+                    <span class="client-section-description">
+                        Paga de forma segura las cotizaciones autorizadas para tus servicios.
+                    </span>
+                </div>
+            </div>
+            <div id="listaPagos" class="lista-pagos" aria-live="polite">
+                <p>Cargando cotizaciones...</p>
+            </div>
+            <p id="mensajePago" class="mensaje-pago" role="status" aria-live="polite"></p>
         </section>
 
 

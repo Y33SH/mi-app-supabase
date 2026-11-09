@@ -59,6 +59,7 @@ El sistema conserva el rol `user` para las cuentas normales, incluido el acceso 
 
 - **Editor:** consulta, busca y filtra todas las solicitudes; puede corregir los datos de contacto/servicio y actualizar su estado. No puede administrar roles ni eliminar solicitudes.
 - **Administrador:** tiene las funciones del editor, un resumen de actividad, consulta de usuarios, asignación de roles y eliminación de solicitudes. Puede generar un reporte imprimible de las solicitudes filtradas y guardarlo como PDF desde el diálogo de impresión del navegador, y administrar un directorio privado de proveedores y contratistas.
+- **Admin y editor:** pueden publicar cotizaciones en MXN para que el cliente las pague desde su dashboard.
 - **Admin y editor:** pueden cambiar su nombre visible en **Mi perfil**. El correo que utilizan para iniciar sesión no cambia.
 - **Usuarios, editores y administradores:** pueden cargar una foto de perfil JPG, PNG o WebP de hasta 10 MB. Se muestra en su panel y los administradores también pueden verla en el listado de usuarios.
 
@@ -66,7 +67,7 @@ El directorio de proveedores/contratistas incluye tipo, contacto, empresa, telé
 
 ### Configuración en Supabase
 
-1. Ejecuta el archivo [`supabase/roles.sql`](./supabase/roles.sql) en **Supabase → SQL Editor**. Si ya ejecutaste una versión anterior, vuelve a ejecutar el archivo actualizado para agregar estas funciones. Este asigna automáticamente `user` a cuentas nuevas, crea o actualiza el bucket privado `avatars` con límite de 10 MB y configura las políticas para que cada cuenta solo pueda cambiar su propia foto; solo el admin puede ver las fotos de los usuarios desde su panel.
+1. Ejecuta el archivo [`supabase/roles.sql`](./supabase/roles.sql) en **Supabase → SQL Editor**. Si ya ejecutaste una versión anterior, vuelve a ejecutar el archivo actualizado para agregar estas funciones. Este asigna automáticamente `user` a cuentas nuevas, crea o actualiza el bucket privado `avatars` con límite de 10 MB y configura las políticas para que cada cuenta solo pueda cambiar su propia foto; solo el admin puede ver las fotos de los usuarios desde su panel. También agrega cotizaciones y el estado del pago a las solicitudes.
 2. Inicia sesión o registra la cuenta que será el primer administrador. En el SQL Editor, ejecuta la siguiente consulta sustituyendo el correo:
 
    ```sql
@@ -79,6 +80,27 @@ El directorio de proveedores/contratistas incluye tipo, contacto, empresa, telé
 3. Para dar acceso de editor, la persona primero debe registrarse/iniciar sesión. Un administrador puede cambiar su rol desde **Usuarios y roles**.
 
 La asignación inicial es manual para impedir que alguien se convierta en administrador desde el formulario público. Los permisos se verifican también en Supabase; ocultar una sección del panel no es la única protección.
+
+## Pagos con Mercado Pago
+
+El panel de gestión permite publicar una cotización en MXN para cada solicitud. El cliente autenticado ve sus cotizaciones en **Mis pagos** en el dashboard y paga en el checkout alojado de Mercado Pago. El importe y el propietario de la solicitud se verifican en el servidor; el pago solo se marca como pagado después de validar la firma del webhook y consultar el pago directamente en Mercado Pago. Una cotización no se puede cambiar después de iniciar su checkout.
+
+Esta función requiere desplegar el sitio en **Vercel** (GitHub Pages no ejecuta las funciones de servidor) y configurar las siguientes variables de entorno en Vercel:
+
+| Variable | Valor |
+| --- | --- |
+| `SUPABASE_URL` | URL del proyecto Supabase |
+| `SUPABASE_SERVICE_ROLE_KEY` | Clave `service_role` de Supabase; solo como variable privada del servidor, nunca en el frontend |
+| `MERCADOPAGO_ACCESS_TOKEN` | Access Token de la aplicación de Mercado Pago (usa credenciales de prueba para validar) |
+| `MERCADOPAGO_WEBHOOK_SECRET` | Clave secreta de firma de notificaciones Webhook en Mercado Pago |
+| `SITE_URL` | URL HTTPS del sitio desplegado, sin ruta final, por ejemplo `https://mi-sitio.vercel.app` |
+
+Pasos de puesta en marcha:
+
+1. Ejecuta `supabase/roles.sql` en Supabase para crear los campos y permisos de cotizaciones y pagos.
+2. Importa el repositorio en Vercel y añade las variables anteriores en **Settings → Environment Variables** para el entorno de despliegue. No publiques ni compartas las claves privadas.
+3. En Mercado Pago, configura una notificación Webhook para pagos (`payment`) hacia `https://TU-DOMINIO/api/mercadopago-webhook` y copia su clave secreta en `MERCADOPAGO_WEBHOOK_SECRET`.
+4. Despliega de nuevo el proyecto después de guardar las variables. Prueba primero con credenciales de prueba de Mercado Pago y una cotización publicada desde el panel.
 
 ## Inteligencia Artificial
 

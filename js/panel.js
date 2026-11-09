@@ -267,11 +267,43 @@ function renderizarSolicitudes() {
 
         const pie = document.createElement('div')
         pie.className = 'ticket-footer'
-        pie.append(formularioEstado, acciones)
+        pie.append(formularioEstado, crearFormularioCotizacion(solicitud), acciones)
         tarjeta.append(pie, crearFormularioEdicion(solicitud))
 
         listaSolicitudes.append(tarjeta)
     })
+}
+
+function crearFormularioCotizacion(solicitud) {
+    const formulario = document.createElement('form')
+    formulario.className = 'form-estado formulario-cotizacion'
+    formulario.dataset.formType = 'quote'
+
+    const etiqueta = document.createElement('label')
+    etiqueta.textContent = 'Cotización (MXN)'
+    const entrada = document.createElement('input')
+    entrada.name = 'cotizacion_mxn'
+    entrada.type = 'number'
+    entrada.min = '1'
+    entrada.max = '1000000'
+    entrada.step = '0.01'
+    entrada.required = true
+    entrada.value = solicitud.cotizacion_mxn ?? ''
+    const checkoutActivo = Boolean(solicitud.mercadopago_preference_id)
+    entrada.disabled = solicitud.pago_estado === 'pagado' || checkoutActivo
+    etiqueta.append(entrada)
+
+    const boton = document.createElement('button')
+    boton.type = 'submit'
+    boton.className = 'button-primary'
+    boton.textContent = solicitud.pago_estado === 'pagado'
+        ? 'Cotización pagada'
+        : checkoutActivo
+            ? 'Checkout iniciado'
+            : 'Publicar cotización'
+    boton.disabled = solicitud.pago_estado === 'pagado' || checkoutActivo
+    formulario.append(etiqueta, boton)
+    return formulario
 }
 
 function obtenerSolicitudesFiltradas() {
@@ -747,6 +779,11 @@ listaSolicitudes.addEventListener('submit', async (event) => {
         return
     }
 
+    if (formulario.dataset.formType === 'quote') {
+        await guardarCotizacion(formulario, tarjeta)
+        return
+    }
+
     const estado = new FormData(formulario).get('estado').trim()
     const boton = formulario.querySelector('button')
     boton.disabled = true
@@ -768,6 +805,28 @@ listaSolicitudes.addEventListener('submit', async (event) => {
     mensajePanel.textContent = 'Estado actualizado correctamente.'
     await cargarSolicitudes()
 })
+
+async function guardarCotizacion(formulario, tarjeta) {
+    const boton = formulario.querySelector('[type="submit"]')
+    const cotizacion = Number(new FormData(formulario).get('cotizacion_mxn'))
+    boton.disabled = true
+    mensajePanel.textContent = 'Publicando cotización...'
+
+    const { error } = await supabase.rpc('actualizar_cotizacion_solicitud', {
+        p_solicitud_id: tarjeta.dataset.requestId,
+        p_cotizacion_mxn: cotizacion
+    })
+
+    if (error) {
+        console.error('Error publicando cotización:', error)
+        mensajePanel.textContent = 'No se pudo publicar la cotización.'
+        boton.disabled = false
+        return
+    }
+
+    mensajePanel.textContent = 'Cotización publicada. El cliente ya puede pagarla.'
+    await cargarSolicitudes()
+}
 
 async function guardarEdicionSolicitud(formulario, tarjeta) {
     const valores = new FormData(formulario)
