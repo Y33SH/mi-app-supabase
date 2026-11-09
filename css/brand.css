@@ -1,0 +1,94 @@
+.brand-logo {
+    display: block;
+    flex: 0 0 auto;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.sidebar-logo .brand-logo-sidebar {
+    width: 96px;
+    height: 84px;
+    padding: 5px;
+    border: 1px solid rgba(148, 163, 184, .18);
+    box-shadow: 0 5px 15px rgba(2, 13, 30, .11);
+}
+
+.sidebar-logo .sidebar-brand-caption {
+    min-width: 0;
+}
+
+.sidebar-logo .sidebar-brand-caption small {
+    display: block;
+    color: #91a8c5;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    line-height: 1.5;
+}
+
+.auth-visual-top .auth-brand-logo {
+    width: 132px;
+    height: 118px;
+    padding: 6px;
+    border: 1px solid rgba(219, 234, 254, .7);
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(3, 14, 30, .18);
+}
+
+.auth-brand-inline {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.auth-brand-inline .brand-logo {
+    width: 122px;
+    height: 108px;
+    padding: 5px;
+    border: 1px solid #e2eaf3;
+    border-radius: 12px;
+}
+
+.chat-avatar .brand-logo {
+    width: 64px;
+    height: 54px;
+    padding: 3px;
+    border-radius: 9px;
+}
+
+@media (max-width: 900px) {
+    body:not(.client-dashboard):not(.management-panel) .sidebar-logo .brand-logo-sidebar {
+        width: 58px;
+        height: 54px;
+        padding: 3px;
+    }
+
+    .chat-avatar-brand {
+        width: 68px;
+        height: 58px;
+        flex: 0 0 68px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 680px) {
+    .client-dashboard .sidebar-logo .brand-logo-sidebar {
+        width: 82px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 760px) {
+    .auth-visual-top .auth-brand-logo {
+        width: 98px;
+        height: 86px;
+        padding: 4px;
+        border-radius: 11px;
+    }
+
+    .auth-brand-inline .brand-logo {
+        width: 104px;
+        height: 92px;
+    }
+}
