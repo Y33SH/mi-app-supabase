@@ -6,8 +6,28 @@ const formulario = document.getElementById('servicioForm')
 const mensaje = document.getElementById('mensajeServicio')
 const listaServicios = document.getElementById('listaServicios')
 const cerrarSesion = document.getElementById('cerrarSesion')
+const navSolicitarServicio = document.getElementById('navSolicitarServicio')
+const navMisServicios = document.getElementById('navMisServicios')
 
 let usuarioActual = null
+
+function actualizarNavegacionServicios() {
+    const mostrandoHistorial = window.location.hash === '#mis-servicios'
+
+    navSolicitarServicio.classList.toggle('activo', !mostrandoHistorial)
+    navMisServicios.classList.toggle('activo', mostrandoHistorial)
+
+    if (mostrandoHistorial) {
+        navSolicitarServicio.removeAttribute('aria-current')
+        navMisServicios.setAttribute('aria-current', 'page')
+    } else {
+        navMisServicios.removeAttribute('aria-current')
+        navSolicitarServicio.setAttribute('aria-current', 'page')
+    }
+}
+
+window.addEventListener('hashchange', actualizarNavegacionServicios)
+actualizarNavegacionServicios()
 
 
 async function verificarUsuario() {

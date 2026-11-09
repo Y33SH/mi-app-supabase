@@ -194,6 +194,198 @@
     box-shadow: 0 4px 12px rgba(30, 64, 110, .08);
 }
 
+.client-dashboard .client-request-card {
+    padding: clamp(20px, 3vw, 34px);
+    border-color: var(--client-border);
+    border-radius: 18px;
+    background: var(--client-surface);
+    box-shadow: var(--client-shadow);
+}
+
+.client-dashboard .client-request-card .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 20px;
+}
+
+.client-dashboard .client-request-card .campo {
+    margin-bottom: 18px;
+}
+
+.client-dashboard .client-request-card .campo label {
+    color: var(--client-text);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.client-dashboard .client-request-card input,
+.client-dashboard .client-request-card select,
+.client-dashboard .client-request-card textarea {
+    min-height: 46px;
+    border-color: var(--client-border);
+    border-radius: 10px;
+    color: var(--client-text);
+    font: inherit;
+    font-size: 13px;
+}
+
+.client-dashboard .client-request-card textarea {
+    min-height: 124px;
+    padding: 12px 14px;
+}
+
+.client-dashboard .client-request-card input:focus,
+.client-dashboard .client-request-card select:focus,
+.client-dashboard .client-request-card textarea:focus {
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, .1);
+}
+
+.client-dashboard .client-submit-button {
+    display: inline-flex;
+    min-height: 43px;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 16px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, .2);
+    color: #fff;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.client-dashboard .client-submit-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 11px 24px rgba(37, 99, 235, .26);
+}
+
+.client-dashboard #mensajeServicio {
+    min-height: 1em;
+    margin: 12px 0 0;
+    color: var(--client-blue);
+    text-align: left;
+}
+
+.client-dashboard .client-request-history {
+    margin-top: 40px;
+    scroll-margin-top: 24px;
+}
+
+.client-dashboard .client-request-history .titulo-seccion {
+    margin-bottom: 19px;
+}
+
+.client-dashboard .client-request-history .titulo-seccion p {
+    margin: 0 0 7px;
+    color: var(--client-blue);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .13em;
+}
+
+.client-dashboard .client-request-history .titulo-seccion h2 {
+    margin: 0;
+    color: var(--client-text);
+    font-size: clamp(20px, 2.5vw, 25px);
+    font-weight: 730;
+    letter-spacing: -.035em;
+}
+
+.client-dashboard .client-request-history .lista-servicios {
+    margin-top: 0;
+    gap: 14px;
+}
+
+.client-dashboard .client-request-history .solicitud-card {
+    padding: 20px;
+    border-color: var(--client-border);
+    border-radius: 14px;
+    background: var(--client-surface);
+    box-shadow: 0 5px 17px rgba(30, 64, 110, .045);
+}
+
+.client-dashboard .client-request-history .sin-servicios {
+    margin: 0;
+    border: 1px dashed var(--client-border);
+    border-radius: 12px;
+    background: var(--client-surface);
+    color: var(--client-muted);
+    font-size: 12px;
+}
+
+.client-dashboard .client-chat-card {
+    height: clamp(400px, calc(100vh - 210px), 780px);
+    min-height: 0;
+    border-color: var(--client-border);
+    border-radius: 18px;
+    box-shadow: var(--client-shadow);
+}
+
+.client-dashboard .client-chat-card .chat-header {
+    flex: 0 0 76px;
+    border-color: var(--client-border);
+}
+
+.client-dashboard .client-chat-card .chat-avatar {
+    overflow: hidden;
+    border: 2px solid #dbeafe;
+    background: #fff;
+}
+
+.client-dashboard .client-chat-card .chat-mensajes {
+    background: linear-gradient(180deg, #f8fafc, #f1f6fb);
+}
+
+.client-dashboard .client-chat-card .burbuja {
+    border-radius: 14px;
+    font-size: 13px;
+}
+
+.client-dashboard .client-chat-card .mensaje-soporte .burbuja {
+    border-color: var(--client-border);
+}
+
+.client-dashboard .client-chat-card .mensaje-cliente .burbuja {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.client-dashboard .client-chat-card .chat-form {
+    flex: 0 0 auto;
+    border-color: var(--client-border);
+}
+
+.client-dashboard .client-chat-card .chat-form input {
+    min-width: 0;
+    border-color: var(--client-border);
+    border-radius: 10px;
+    color: var(--client-text);
+    font: inherit;
+    font-size: 13px;
+}
+
+.client-dashboard .client-chat-card .chat-form input:focus {
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, .1);
+}
+
+.client-dashboard .client-chat-card .chat-form button {
+    min-height: 46px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, .18);
+    font-size: 12px;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.client-dashboard .client-chat-card .chat-form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 9px 20px rgba(37, 99, 235, .24);
+}
+
 .client-dashboard .hero-dashboard {
     position: relative;
     min-height: 320px;
@@ -741,6 +933,20 @@
     }
 }
 
+@media (max-width: 700px) {
+    .client-dashboard .client-request-card .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .client-dashboard .client-request-card .campo-completo {
+        grid-column: auto;
+    }
+
+    .client-dashboard .client-request-history {
+        margin-top: 32px;
+    }
+}
+
 @media (max-width: 680px) {
     .client-dashboard {
         display: block;
@@ -822,6 +1028,37 @@
 
     .client-dashboard .client-header h1 {
         font-size: 22px;
+    }
+
+    .client-dashboard .client-chat-card {
+        height: max(360px, calc(100dvh - 245px));
+    }
+
+    .client-dashboard .client-chat-card .chat-header {
+        padding: 14px 16px;
+    }
+
+    .client-dashboard .client-chat-card .chat-mensajes {
+        padding: 20px 14px;
+    }
+
+    .client-dashboard .client-chat-card .burbuja {
+        max-width: 85%;
+        padding: 11px 13px;
+    }
+
+    .client-dashboard .client-chat-card .chat-form {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .client-dashboard .client-chat-card .chat-form input {
+        padding: 0 12px;
+    }
+
+    .client-dashboard .client-chat-card .chat-form button {
+        min-width: 0;
+        padding: 0 12px;
     }
 
     .client-dashboard .hero-dashboard {
