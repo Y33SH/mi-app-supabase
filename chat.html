@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Climas Torres | Chat</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/brand.css">
 </head>
 
-<body class="dashboard-body">
+<body class="dashboard-body client-dashboard">
 
-    <aside class="sidebar">
+    <aside class="sidebar client-sidebar">
 
         <div>
             <div class="sidebar-logo">
@@ -19,13 +20,31 @@
                     src="assets/climas-torres-logo.png"
                     alt="Climas Torres"
                 >
+                <div class="sidebar-brand-caption">
+                    <small>CLIMATIZACIÓN Y SERVICIO</small>
+                </div>
             </div>
 
-            <nav class="menu">
-                <a href="dashboard.html">⌂ Inicio</a>
-                <a href="servicios.html">🔧 Solicitar servicio</a>
-                <a href="servicios.html#mis-servicios">📋 Mis servicios</a>
-                <a href="chat.html" class="activo">💬 Chat</a>
+            <p class="client-nav-caption">MI ESPACIO</p>
+            <nav class="menu client-menu" aria-label="Navegación principal">
+                <a href="dashboard.html">
+                    <span aria-hidden="true">⌂</span> Inicio
+                </a>
+                <a href="servicios.html">
+                    <span aria-hidden="true">＋</span> Solicitar servicio
+                </a>
+                <a href="servicios.html#mis-servicios">
+                    <span aria-hidden="true">▤</span> Mis servicios
+                </a>
+                <a href="dashboard.html#pagos">
+                    <span aria-hidden="true">$</span> Mis pagos
+                </a>
+                <a href="chat.html" class="activo" aria-current="page">
+                    <span aria-hidden="true">▢</span> Chat de ayuda
+                </a>
+                <a href="dashboard.html#perfil">
+                    <span aria-hidden="true">◉</span> Mi perfil
+                </a>
             </nav>
         </div>
 
@@ -36,12 +55,12 @@
     </aside>
 
 
-    <main class="dashboard-main">
+    <main class="dashboard-main client-main">
 
-        <header class="dashboard-header">
+        <header class="dashboard-header client-header">
 
             <div>
-                <p class="dashboard-pequeno">Soporte</p>
+                <p class="dashboard-pequeno">TU ESPACIO CLIMAS TORRES</p>
                 <h1>Chat con Climas Torres</h1>
                 <p>Cuéntanos en qué podemos ayudarte.</p>
             </div>
@@ -49,7 +68,7 @@
         </header>
 
 
-        <section class="chat-card">
+        <section class="chat-card client-chat-card" aria-label="Chat de soporte">
 
             <div class="chat-header">
 
@@ -73,7 +92,7 @@
             </div>
 
 
-            <div id="chatMensajes" class="chat-mensajes">
+            <div id="chatMensajes" class="chat-mensajes" role="log" aria-live="polite" aria-label="Mensajes del chat">
 
                 <div class="mensaje mensaje-soporte">
 
