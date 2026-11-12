@@ -640,6 +640,21 @@
     background: #eff6ff;
 }
 
+.client-dashboard .client-help-card .client-whatsapp-link {
+    min-height: 0;
+    margin-left: 5px;
+    padding: 2px 6px;
+    border-color: #bbebc8;
+    background: #f0fbf3;
+    color: #15803d;
+    font-weight: 700;
+}
+
+.client-dashboard .client-help-card .client-whatsapp-link:hover {
+    border-color: #86d69d;
+    background: #e7f8eb;
+}
+
 .client-dashboard .client-profile-section {
     margin-top: 35px;
     scroll-margin-top: 24px;
